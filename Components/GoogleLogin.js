@@ -17,7 +17,8 @@ const googleConfig = {
 export default class GoogleLogin extends Component {
     state={
         isLoggedIn:false,
-        googleUser:""
+        googleUser:"",
+        googleToken:""
     }
     /*Metode der kaldes for at logge ind med Async! */
     _handleGoogleLogin = async () => {
@@ -29,6 +30,7 @@ export default class GoogleLogin extends Component {
             if(type === "success"){
                 this.setState({isLoggedIn:true})
                 this.setState({googleUser:user})
+                this.setState({googleToken:accessToken})
                 /*Debug til om der et token sat*/
                 console.log(accessToken+ ' her er token')
 
@@ -52,8 +54,13 @@ export default class GoogleLogin extends Component {
     };
     /*Logger ud*/
     _handleLogOut = async () =>{
-        this.setState({isLoggedIn:false})
-        this.setState({ googleUser:""})
+        try{
+            await Google.logOutAsync({accessToken:this.state.googleToken,...googleConfig});
+            this.setState({isLoggedIn:false})
+            this.setState({ googleUser:""})
+        }catch (e) {
+            console.log(e)
+        }
     }
 
     render() {
