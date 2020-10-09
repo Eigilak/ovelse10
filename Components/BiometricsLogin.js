@@ -71,8 +71,9 @@ export default class BioMetrcisLogin extends React.Component {
 
 
     render() {
+        const {isLoggedInBiometic} = this.state;
 
-        if(!this.state.isLoggedInBiometic){
+        if(!isLoggedInBiometic){
             const {
                 hasBiometricData,
                 hasBiometricHardware,
@@ -106,7 +107,7 @@ export default class BioMetrcisLogin extends React.Component {
                 <View style={styles.container}>
                     <Text style={styles.paragraph}>
                         Du er logget ind med biometrics!!
-                        <Button onPress={}/>
+                        <Button onPress={this.logout} title="Log ud"/>
                     </Text>
                 </View>
             )
