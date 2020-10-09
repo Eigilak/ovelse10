@@ -65,6 +65,11 @@ export default class BioMetrcisLogin extends React.Component {
         LocalAuthentication.cancelAuthenticate();
     };
 
+    logout =() =>{
+        this.setState({isLoggedInBiometic:false})
+    }
+
+
     render() {
 
         if(!this.state.isLoggedInBiometic){
@@ -101,6 +106,7 @@ export default class BioMetrcisLogin extends React.Component {
                 <View style={styles.container}>
                     <Text style={styles.paragraph}>
                         Du er logget ind med biometrics!!
+                        <Button onPress={}/>
                     </Text>
                 </View>
             )

@@ -55,9 +55,9 @@ export default class GoogleLogin extends Component {
     /*Logger ud*/
     _handleLogOut = async () =>{
         try{
-            await Google.logOutAsync({accessToken:this.state.googleToken,...googleConfig});
-            this.setState({isLoggedIn:false})
-            this.setState({ googleUser:""})
+            const {type} = await Google.logOutAsync({accessToken:this.state.googleToken,...googleConfig});
+            this.setState({isLoggedIn:false,googleUser:"",googleToke:""})
+            console.log('dette er min '+type)
         }catch (e) {
             console.log(e)
         }
